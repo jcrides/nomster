@@ -6,6 +6,7 @@ gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
 gem 'pg'
 
+gem 'will_paginate'
 gem 'bootstrap-sass', '>= 3.2'
 gem 'autoprefixer-rails'
 
