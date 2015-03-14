@@ -8,6 +8,7 @@ gem 'pg'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '>= 3.2'
+gem 'devise', '>= 3.2.4'
 gem 'simple_form'
 gem 'will_paginate'
 
