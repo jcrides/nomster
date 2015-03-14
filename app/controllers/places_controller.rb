@@ -4,4 +4,8 @@ class PlacesController < ApplicationController
     @places = Place.paginate(:page => params[:page])
   end
 
+  def new
+    @place = Place.new
+  end
+
 end
