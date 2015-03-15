@@ -3,10 +3,14 @@
   <i><%= @place.address %></i>
   <br>
   <p><%= @place.description %></p>
+  <br>
+  <% if @place.user.present? %>
+    <small><%= @place.user.email %></small>
+  <% end %>
   <div class="pull-right">
     <% if current_user && current_user == @place.user %>
       <%= link_to 'Edit', edit_place_path(@place), :class => 'btn nom-button' %>
+      <%= link_to 'Delete', place_path(@place), :method => :delete, :data => {:confirm => 'Do you really want to delete this place?'}, :class => 'btn btn-warning' %>
     <% end %>
-    <%= link_to 'Delete', place_path(@place), :method => :delete, :data => {:confirm => 'Do you really want to delete this place?'}, :class => 'btn btn-warning' %>
   </div>
 </div>
