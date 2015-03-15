@@ -9,4 +9,6 @@
     <% end %>
   </div>
 <% end %>
-<%= will_paginate @places %>
+<div class="col-xs-10 col-xs-offset-1">
+  <%= will_paginate @places, renderer: BootstrapPagination::Rails, :class => "pagination-sm" %>
+</div>

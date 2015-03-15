@@ -11,6 +11,7 @@ gem 'bootstrap-sass', '>= 3.2'
 gem 'devise', '>= 3.2.4'
 gem 'simple_form'
 gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
