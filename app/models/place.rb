@@ -4,6 +4,9 @@ class Place < ActiveRecord::Base
   validates :address, :presence => true
   validates :description, :presence => true
 
+  geocoded_by :address
+  after_validation :geocode
+
   self.per_page = 6
 
 end
