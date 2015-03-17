@@ -11,10 +11,10 @@
     <% if place.comments.present? %>
       <div class="col-xs-12">
         <blockquote>
-          <% if place.comments.last.humanized_rating.present? %>
-            <b><%= place.comments.last.humanized_rating %></b> -
+          <% place.comments.last.rating.to_i.times do %>
+            <span class="glyphicon glyphicon-star rating" aria-hidden="true"></span>
           <% end %>
-          <%= place.comments.last.message %>
+          - <%= place.comments.last.message %>
           <small><%= place.comments.last.user.email %></small>
         </blockquote>
       </div>
