@@ -15,3 +15,7 @@
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore the uploads
+/public/uploads
+
