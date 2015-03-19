@@ -12,7 +12,7 @@ Rails.application.configure do
       :authentication => :plain,
   }
   ActionMailer::Base.delivery_method = :smtp
-  
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
