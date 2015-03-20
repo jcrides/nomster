@@ -104,7 +104,9 @@
   <h2 class="pull-left">Photos</h2><br><br>
   <% @place.photos.each do |photo| %>
     <div>
-      <%= image_tag photo.placephoto, :size => "250x150" %>
+      <%= link_to image_path(photo.placephoto), :title => photo.caption, :data => { :lightbox => "image" } do %>
+        <%= image_tag photo.placephoto, :size => "250x150" %>
+      <% end %>
     </div>
   <% end %>
 </div>
