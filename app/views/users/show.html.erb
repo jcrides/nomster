@@ -12,3 +12,23 @@
 
   <div class="clear"></div>
 </div>
+
+<br><br>
+<h1 class="text-center">My Comments</h1>
+<br><br>
+<% @user.comments.each do |comment| %>
+  <div class="col-xs-12 col-sm-6">
+    <h2 class="text-center"><%= link_to comment.place.name, place_path(comment.place) %></h2>
+    <div>
+      <blockquote>
+        <% if comment.rating.present? %>
+          <% comment.rating.to_i.times do %>
+            <span class="glyphicon glyphicon-star rating" aria-hidden="true"></span>
+          <% end %>
+        <% end %>
+        - <%= comment.message %>
+        <small><%= comment.user.email %></small>
+      </blockquote>
+    </div>
+  </div>
+<% end %>

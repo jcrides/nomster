@@ -114,10 +114,12 @@
   <% @place.comments.each do |comment| %>
     <div>
       <blockquote>
-        <% comment.rating.to_i.times do %>
-          <span class="glyphicon glyphicon-star rating" aria-hidden="true"></span>
+        <% if comment.rating.present? %>
+          <% comment.rating.to_i.times do %>
+            <span class="glyphicon glyphicon-star rating" aria-hidden="true"></span>
+          <% end %>
         <% end %>
-          - <%= comment.message %>
+        - <%= comment.message %>
         <small><%= comment.user.email %></small>
       </blockquote>
     </div>
