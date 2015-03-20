@@ -2,7 +2,7 @@ class PlacesController < ApplicationController
   before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
 
   def index
-    @places = Place.paginate(:page => params[:page]).order('created_at DESC')
+    @places = Place.includes(:comments, :photos).paginate(:page => params[:page]).order('created_at DESC')
   end
 
   def new
@@ -19,7 +19,7 @@ class PlacesController < ApplicationController
   end
 
   def show
-    @place = Place.where(:id => params[:id]).first
+    @place = Place.includes(:comments, :photos).find(params[:id])
     if @place.blank?
       render :text => 'No such place found', :status => :not_found
     else
