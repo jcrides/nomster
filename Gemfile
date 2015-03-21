@@ -21,6 +21,8 @@ gem 'simple_form'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 
+gem 'quiet_assets', group: :development
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
