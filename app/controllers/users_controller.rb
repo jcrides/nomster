@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     if @user.blank?
       render :text => 'No such user found', :status => :not_found
     else
-      @places = Place.where("user_id = #{params[:id]}").paginate(:page => params[:page]).order('created_at DESC')
+      @places = Place.includes(:comments, :photos).where("user_id = #{params[:id]}").paginate(:page => params[:page]).order('created_at DESC')
     end
   end
 
