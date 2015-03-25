@@ -15,6 +15,8 @@ gem 'figaro', '>= 1.0.0'
 gem 'fog'
 gem 'geocoder'
 gem 'lightbox2-rails'
+gem 'minitest-reporters', group: :test
+gem 'quiet_assets', group: :development
 gem 'simple_form'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
