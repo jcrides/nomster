@@ -19,44 +19,59 @@ class PlacesController < ApplicationController
   end
 
   def show
-    @place = Place.find(params[:id])
-    @comment = Comment.new
-    @photo = Photo.new
+    @place = Place.where(:id => params[:id]).first
+    if @place.blank?
+      render :text => 'No such place found', :status => :not_found
+    else
+      @comment = Comment.new
+      @photo = Photo.new
+    end
   end
 
   def edit
-    @place = Place.find(params[:id])
-
-    if @place.user != current_user
-      return render :text => 'This is not your place', :status => :forbidden
+    @place = Place.where(:id => params[:id]).first
+    if @place.blank?
+      render :text => 'No such place found', :status => :not_found
+    else
+      if @place.user != current_user
+        return render :text => 'This is not your place', :status => :unauthorized
+      end
     end
   end
 
   def update
-    @place = Place.find(params[:id])
+    @place = Place.where(:id => params[:id]).first
 
-    if @place.user != current_user
-      return render :text => 'This is not your place', :status => :forbidden
-    end
-
-    @place.update_attributes(place_params)
-    if @place.valid?
-      redirect_to root_path
+    if @place.blank?
+      render :text => 'No such place found', :status => :not_found
     else
-      render :edit, :status => :unprocessable_entity
+      if @place.user != current_user
+        return render :text => 'This is not your place', :status => :unauthorized
+      end
+
+      @place.update_attributes(place_params)
+      if @place.valid?
+        redirect_to root_path
+      else
+        render :edit, :status => :unprocessable_entity
+      end
     end
 
   end
 
   def destroy
-    @place = Place.find(params[:id])
+    @place = Place.where(:id => params[:id]).first
 
-    if @place.user != current_user
-      return render :text => 'This is not your place', :status => :forbidden
+    if @place.blank?
+      render :text => 'No such place found', :status => :not_found
+    else
+      if @place.user != current_user
+        return render :text => 'This is not your place', :status => :unauthorized
+      end
+
+      @place.destroy
+      redirect_to root_path
     end
-
-    @place.destroy
-    redirect_to root_path
   end
 
   private

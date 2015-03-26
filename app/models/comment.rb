@@ -11,6 +11,8 @@ class Comment < ActiveRecord::Base
       'five stars'  =>  '5'
   }
 
+  validates :rating, :inclusion => {:in => (RATINGS.values + [nil, ''])}
+
   def send_comment_email
     NotificationMailer.comment_added(self).deliver_now
   end
