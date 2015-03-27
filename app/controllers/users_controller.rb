@@ -1,11 +1,15 @@
 class UsersController < ApplicationController
 
   def show
-    @user =   User.where(:id => params[:id]).first
+    @user = User.where(:id => params[:id])  #.includes(:places, :comments)
+                .first
     if @user.blank?
       render :text => 'No such user found', :status => :not_found
     else
-      @places = Place.includes(:comments, :photos).where("user_id = #{params[:id]}").paginate(:page => params[:page]).order('created_at DESC')
+      @places = Place.includes(:comments, :photos)
+                     .where("user_id = #{params[:id]}")
+                     .paginate(:page => params[:page])
+                     .order('created_at DESC')
     end
   end
 
